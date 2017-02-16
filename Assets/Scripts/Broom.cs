@@ -42,6 +42,7 @@ public class Broom : MonoBehaviour {
         if (collidedWith.tag == "EnemyProjectile" || collidedWith.tag == "Enemy"){
             //TODO lose life?
             Destroy(collidedWith);
+            GameController.EndGame();
             Destroy(this.gameObject);
         }
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
+    public int lives;
+    public int points;
     public float delay;
     public GameObject bullet;
     public bool angled;
@@ -11,10 +13,13 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (!angled) { InvokeRepeating("Shoot", 1f, delay); }
-        else{
-            playerT = GameObject.FindGameObjectWithTag("Player").transform;
-            InvokeRepeating("ShootAngled", 1f, delay);
+        if (bullet != null){
+            if (!angled) { InvokeRepeating("Shoot", 1f, delay); }
+            else
+            {
+                playerT = GameObject.FindGameObjectWithTag("Player").transform;
+                InvokeRepeating("ShootAngled", 1f, delay);
+            }
         }
     }
 	

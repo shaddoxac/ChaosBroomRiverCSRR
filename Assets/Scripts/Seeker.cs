@@ -21,10 +21,10 @@ public class Seeker : MonoBehaviour {
         Vector3 pos = transform.position;
         float playerx = player.transform.position.x;
         float curXSpeed;
-        if (pos.x + buffer> playerx){
+        if (pos.x + buffer > playerx){
             curXSpeed = -Mathf.Abs(xSpeed);
         }
-        else if (pos.x - buffer< playerx){
+        else if (pos.x - buffer < playerx){
             curXSpeed = Mathf.Abs(xSpeed);
         }
         else{

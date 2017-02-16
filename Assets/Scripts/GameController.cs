@@ -22,15 +22,13 @@ public class GameController : MonoBehaviour {
     public float delayRate;
 
     public static int score = 0;
-
-    private GameObject player;
-    private bool gameOver = false;
+    private static bool gameOver = false;
+    
 
     private static Text scoreText;
 
     // Use this for initialization
     void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
         Invoke("CreateBroom", broomStart);
         Invoke("CreateTank", tankStart);
         Invoke("CreateSeeker", seekerStart);
@@ -40,14 +38,9 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (player == null){
-            gameOver = true;
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject enemy in enemies){
-                Destroy(enemy);
-            }
-            //TODO load new scene?
-        }
+		//if (player == null){
+        //    EndGame();
+        //}
 	}
 
     void CreateBroom(){
@@ -82,11 +75,25 @@ public class GameController : MonoBehaviour {
         pos.x = Random.Range(-leftAndRightEdge, leftAndRightEdge);
         pos.y = 0;
         pos.z = top;
-
         inst.transform.position = pos;
     }
 
     public static void UpdateScore(){
         scoreText.text = "Score: " + score;
+    }
+
+    public static void UpdateScore(int s){
+        score += s;
+        UpdateScore();
+    }
+
+    public static void EndGame(){
+        gameOver = true;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        //TODO load new scene?
     }
 }
