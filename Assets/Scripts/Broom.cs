@@ -5,6 +5,9 @@ using UnityEngine;
 public class Broom : MonoBehaviour {
     public GameObject fireball;
     public float moveSpeed;
+    public float delay;
+
+    private float recharge = 0.0f;
 
     // Use this for initialization
     void Start() {
@@ -13,39 +16,16 @@ public class Broom : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //KeyboardControl();
         MouseControl();
-    }
-
-    void KeyboardControl() {
-        float xVelocity = 0.0f;
-        float yVelocity = 0.0f;
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            //TODO launch fireball
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)){
-            xVelocity += moveSpeed;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
-            yVelocity -= moveSpeed;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)){
-            xVelocity -= moveSpeed;
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)){
-            yVelocity -= moveSpeed;
-        }
-        Vector3 pos = transform.position;
-        pos.x = xVelocity * Time.deltaTime;
-        pos.y = yVelocity * Time.deltaTime;
-        //TODO check in bounds
-        transform.position = pos;
     }
 
     void MouseControl(){
         if (Input.GetKeyDown(KeyCode.Mouse0)){
-            GameObject fire = GameObject.Instantiate(fireball);
-            fire.transform.position = transform.position;
+            if (recharge <= Time.time){
+                GameObject fire = GameObject.Instantiate(fireball);
+                fire.transform.position = transform.position;
+                recharge = Time.time + delay;
+            }
         }
         Vector3 mousePos2D = Input.mousePosition;
         mousePos2D.z = -Camera.main.transform.position.z;
@@ -54,5 +34,15 @@ public class Broom : MonoBehaviour {
         pos.x = mousePos3D.x;
         pos.y = mousePos3D.y;
         transform.position = pos;
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        GameObject collidedWith = coll.gameObject;
+        if (collidedWith.tag == "EnemyProjectile" || collidedWith.tag == "Enemy"){
+            //TODO lose life
+            Destroy(collidedWith);
+            Destroy(this.gameObject);
+        }
     }
 }

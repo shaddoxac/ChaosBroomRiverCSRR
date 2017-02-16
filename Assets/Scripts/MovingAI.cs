@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovingAI : MonoBehaviour {
-    public float speed;
+    public float xspeed;
+    public float yspeed;
     public float leftAndRightEdge;
     public float chanceToChangeDirections;
+    public float bottom;
 
 	// Use this for initialization
 	void Start () {
@@ -14,27 +14,19 @@ public class MovingAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            Vector3 pos = transform.position;
-            pos.x += speed * Time.deltaTime;
-        pos.y -= speed * Time.deltaTime;
-            transform.position = pos;
+        Vector3 pos = transform.position;
+        pos.x += xspeed * Time.deltaTime;
+        pos.y -= yspeed * Time.deltaTime;
+        if (pos.y < bottom) { Destroy(this.gameObject); }
+        transform.position = pos;
 
         if (pos.x < -leftAndRightEdge)
         {
-            speed = Mathf.Abs(speed);
+            xspeed = Mathf.Abs(xspeed);
         }
         else if (pos.x > leftAndRightEdge)
         {
-            speed = -Mathf.Abs(speed);
+            xspeed = -Mathf.Abs(xspeed);
         }
        }
-
-        void FixedUpdate() // calls over time, not over number of frames
-    {
-            if (Random.value < chanceToChangeDirections)
-            {
-                speed *= -1;
-            }
-            speed *= 1.0001f;
-    }
 }

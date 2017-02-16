@@ -25,6 +25,5 @@ public class Projectile : MonoBehaviour {
         else if (pos.y < bottom){
             Destroy(this.gameObject);
         }
-        //collisions
     }
 }

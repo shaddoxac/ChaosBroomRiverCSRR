@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour {
+public class Enemy : MonoBehaviour {
     public float delay;
     public GameObject bullet;
 
@@ -18,5 +18,14 @@ public class Gun : MonoBehaviour {
     void Shoot(){
         GameObject fire = GameObject.Instantiate(bullet);
         fire.transform.position = transform.position;
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        GameObject collidedWith = coll.gameObject;
+        if (collidedWith.tag == "PlayerProjectile"){
+            Destroy(collidedWith);
+            Destroy(this.gameObject);
+        }
     }
 }
