@@ -15,14 +15,14 @@ public class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 pos = transform.position;
-        pos.y += speed * Time.deltaTime;
+        pos.z += speed * Time.deltaTime;
         transform.position = pos;
 
-        if (pos.y > top)
+        if (pos.z > top)
         {
             Destroy(this.gameObject);
         }
-        else if (pos.y < bottom){
+        else if (pos.z < bottom){
             Destroy(this.gameObject);
         }
     }

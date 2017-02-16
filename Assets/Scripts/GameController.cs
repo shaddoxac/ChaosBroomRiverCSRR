@@ -21,8 +21,8 @@ public class GameController : MonoBehaviour {
         GameObject br = GameObject.Instantiate(enemyBroom);
         Vector3 pos = new Vector3();
         pos.x = Random.Range(-leftAndRightEdge, leftAndRightEdge);
-        pos.y = top;
-        pos.z = 0;
+        pos.y = 0;
+        pos.z = top;
 
         br.transform.position = pos;
     }

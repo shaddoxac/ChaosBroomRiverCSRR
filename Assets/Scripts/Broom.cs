@@ -28,11 +28,11 @@ public class Broom : MonoBehaviour {
             }
         }
         Vector3 mousePos2D = Input.mousePosition;
-        mousePos2D.z = -Camera.main.transform.position.z;
+        mousePos2D.z = Camera.main.transform.position.y;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
         Vector3 pos = transform.position;
         pos.x = mousePos3D.x;
-        pos.y = mousePos3D.y;
+        pos.z = mousePos3D.z;
         transform.position = pos;
     }
 
