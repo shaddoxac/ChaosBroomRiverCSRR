@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
     public GameObject enemyBroom;
     public GameObject tank;
     public GameObject seeker;
+
     public float leftAndRightEdge;
     public float top;
     public float broomStart;
@@ -19,8 +21,12 @@ public class GameController : MonoBehaviour {
     public float maxSeekerDelay;
     public float delayRate;
 
+    public static int score = 0;
+
     private GameObject player;
     private bool gameOver = false;
+
+    private static Text scoreText;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +34,8 @@ public class GameController : MonoBehaviour {
         Invoke("CreateBroom", broomStart);
         Invoke("CreateTank", tankStart);
         Invoke("CreateSeeker", seekerStart);
+        scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
+        UpdateScore();
 	}
 	
 	// Update is called once per frame
@@ -76,5 +84,9 @@ public class GameController : MonoBehaviour {
         pos.z = top;
 
         inst.transform.position = pos;
+    }
+
+    public static void UpdateScore(){
+        scoreText.text = "Score: " + score;
     }
 }

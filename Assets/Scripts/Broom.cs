@@ -40,7 +40,7 @@ public class Broom : MonoBehaviour {
     {
         GameObject collidedWith = coll.gameObject;
         if (collidedWith.tag == "EnemyProjectile" || collidedWith.tag == "Enemy"){
-            //TODO lose life
+            //TODO lose life?
             Destroy(collidedWith);
             Destroy(this.gameObject);
         }

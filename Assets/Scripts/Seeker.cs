@@ -28,22 +28,11 @@ public class Seeker : MonoBehaviour {
             curXSpeed = Mathf.Abs(xSpeed);
         }
         else{
-            //float diff = pos.x - playerx;
-            //curXSpeed = (Mathf.Abs(xSpeed)) * diff;
             curXSpeed = 0f;
         }
         pos.x += curXSpeed * Time.deltaTime;
         pos.z -= zSpeed * Time.deltaTime;
         if (pos.z < bottom) { Destroy(this.gameObject); }
         transform.position = pos;
-    }
-
-    void OnCollisionEnter(Collision coll)
-    {
-        GameObject collidedWith = coll.gameObject;
-        if (collidedWith.tag == "Enemy")
-        {
-            xSpeed = -Mathf.Abs(xSpeed);
-        }
     }
 }

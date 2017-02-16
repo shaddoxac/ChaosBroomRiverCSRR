@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
     public float delay;
-    public int life;
     public GameObject bullet;
     public bool angled;
 
@@ -24,12 +23,12 @@ public class Enemy : MonoBehaviour {
 	}
 
     void Shoot(){
-        GameObject fire = GameObject.Instantiate(bullet);
+        GameObject fire = Instantiate(bullet);
         fire.transform.position = transform.position;
     }
 
     void ShootAngled(){
-        GameObject fire = GameObject.Instantiate(bullet);
+        GameObject fire = Instantiate(bullet);
         fire.transform.position = transform.position;
         if (transform.position.x - 1 > playerT.transform.position.x) {
             Projectile proj = fire.GetComponent<Projectile>();
@@ -42,17 +41,5 @@ public class Enemy : MonoBehaviour {
             proj.xSpeed = -proj.zSpeed;
         }
             
-    }
-
-    void OnCollisionEnter(Collision coll)
-    {
-        GameObject collidedWith = coll.gameObject;
-        if (collidedWith.tag == "PlayerProjectile"){
-            Destroy(collidedWith);
-            life--;
-            if (life <= 0){
-                Destroy(this.gameObject);
-            }
-        }
     }
 }
