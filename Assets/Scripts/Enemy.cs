@@ -12,9 +12,11 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        playerT = GameObject.FindGameObjectWithTag("Player").transform;
         if (!angled) { InvokeRepeating("Shoot", 1f, delay); }
-        else { InvokeRepeating("ShootAngled", 1f, delay); }
+        else{
+            playerT = GameObject.FindGameObjectWithTag("Player").transform;
+            InvokeRepeating("ShootAngled", 1f, delay);
+        }
     }
 	
 	// Update is called once per frame
@@ -29,12 +31,12 @@ public class Enemy : MonoBehaviour {
     void ShootAngled(){
         GameObject fire = GameObject.Instantiate(bullet);
         fire.transform.position = transform.position;
-        if (transform.position.x - 0.5 > playerT.transform.position.x) {
+        if (transform.position.x - 1 > playerT.transform.position.x) {
             Projectile proj = fire.GetComponent<Projectile>();
             proj.zSpeed *= .5f;
             proj.xSpeed = proj.zSpeed;
         }
-        else if (transform.position.x + 0.5 < playerT.transform.position.x){
+        else if (transform.position.x + 1 < playerT.transform.position.x){
             Projectile proj = fire.GetComponent<Projectile>();
             proj.zSpeed *= .5f;
             proj.xSpeed = -proj.zSpeed;
