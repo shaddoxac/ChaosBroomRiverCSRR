@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
-    public float speed;
+    public float xSpeed;
+    public float zSpeed;
     public float top;
     public float bottom;
 
@@ -15,7 +16,8 @@ public class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 pos = transform.position;
-        pos.z += speed * Time.deltaTime;
+        pos.x += xSpeed * Time.deltaTime;
+        pos.z += zSpeed * Time.deltaTime;
         transform.position = pos;
 
         if (pos.z > top)

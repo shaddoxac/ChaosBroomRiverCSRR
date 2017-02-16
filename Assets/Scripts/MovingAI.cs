@@ -28,5 +28,14 @@ public class MovingAI : MonoBehaviour {
         {
             xspeed = -Mathf.Abs(xspeed);
         }
-       }
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        GameObject collidedWith = coll.gameObject;
+        if (collidedWith.tag == "Enemy")
+        {
+            xspeed = -Mathf.Abs(xspeed);
+        }
+    }
 }
