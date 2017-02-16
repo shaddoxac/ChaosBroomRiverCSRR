@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114739215869995680}
   - component: {fileID: 54058001206424068}
   - component: {fileID: 136127357524282150}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy Broom
   m_TagString: Enemy
   m_Icon: {fileID: 0}

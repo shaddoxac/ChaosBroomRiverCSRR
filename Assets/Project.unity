@@ -269,6 +269,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 1820780977445434, guid: faaf508c1a635e1459ce8cf47cb67102, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: faaf508c1a635e1459ce8cf47cb67102, type: 2}
   m_IsPrefabParent: 0
@@ -474,7 +478,7 @@ GameObject:
   - component: {fileID: 1983297608}
   - component: {fileID: 1983297607}
   - component: {fileID: 1983297612}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Broom
   m_TagString: Player
   m_Icon: {fileID: 0}
