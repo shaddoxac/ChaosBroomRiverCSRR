@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Broom : MonoBehaviour {
     public GameObject fireball;
+	public GameObject dropBall;
     public float moveSpeed;
     public float delay;
 
@@ -20,13 +21,23 @@ public class Broom : MonoBehaviour {
     }
 
     void MouseControl(){
-        if (Input.GetKeyDown(KeyCode.Mouse0)){
-            if (recharge <= Time.time){
-                GameObject fire = GameObject.Instantiate(fireball);
-                fire.transform.position = transform.position;
-                recharge = Time.time + delay;
-            }
-        }
+		if (Input.GetKeyDown (KeyCode.Mouse0)) {
+			if (recharge <= Time.time) {
+				var aud = GetComponent<AudioSource> ();
+				aud.Play ();
+				GameObject fire = GameObject.Instantiate (fireball);
+				fire.transform.position = transform.position;
+				recharge = Time.time + delay;
+			}
+		} 
+
+		if (Input.GetKeyDown (KeyCode.Mouse1)) {
+			GameObject drop = GameObject.Instantiate (dropBall) as GameObject;
+			drop.transform.position = transform.position;
+			drop.transform.Translate (Vector3.down * 5);
+			FollowCam.S.poi = drop;
+		}
+
         Vector3 mousePos2D = Input.mousePosition;
         mousePos2D.z = Camera.main.transform.position.y;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
